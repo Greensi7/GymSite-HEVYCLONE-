@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en" class="back">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="basi.css">
+  <style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .add {
+      font-size: 10px;
+      color: white;
+      background-color: rgb(23, 128, 234);
+      border: none;
+      height: 20px;
+      border-radius: 3px;
+      margin-top: 10px;
+      width: 416px;
+    }
+
+    .add:hover {
+      background-color: rgb(24, 3, 249);
+      color: #F9FAFB;
+      border: none;
+    }
+
+    .add:active {
+      background-color: rgb(23, 128, 234);
+    }
+
+    button {
+      border-radius: 8px;
+      background-color: #ffffff;
+      width: 391px;
+      height: 25px;
+
+      border-width: 1px;
+      border-color: #b7b5b5;
+      border-style: solid;
+      box-shadow: 0 0 0;
+      outline: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .overlay {
+      color: black;
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      z-index: 999;
+      opacity: 70%;
+    }
+
+    button:hover {
+      background-color: #b7b5b5;
+      color: #F9FAFB;
+      border: none;
+    }
+
+    button:active {
+      background-color: white;
+      color: rgb(0, 0, 0);
+      border: 1px solid #b7b5b5;
+    }
+
+    .cyan {
+      color: rgb(0, 136, 255);
+    }
+
+    .black {
+      color: rgb(5, 5, 5);
+    }
+
+    .yellow {
+      color: rgb(255, 145, 0);
+    }
+
+    .red {
+      color: red;
+    }
+
+    .alli {
+      margin: 0;
+    }
+
+    .text {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-size: 10px;
+      height: 100%;
+      font-weight: 600;
+      margin: 0;
+      text-align: center;
+    }
+
+    #set {
+      padding: 0;
+      line-height: 32px;
+      width: 32px;
+      height: 32px;
+      text-align-last: center;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-size: 14px;
+      background-color: rgb(252, 252, 252);
+      border: 0px;
+      border-radius: 5px;
+      font-weight: 900;
+      appearance: none;
+      transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+    }
+
+    .back {
+      background-color: #F9FAFB;
+    }
+
+    .bg {
+      background-color: rgb(255, 254, 254);
+      margin-top: 10px;
+      height: 5%;
+      width: 400px;
+      border-radius: 8px;
+      padding: 10px;
+      border: none;
+      outline: 0.5px solid #d1d1d1;
+      top: 50px;
+      left: 30px;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      margin-left: auto;
+      margin-right: auto;
+      transition: width 0.3s ease;
+    }
+
+    .set_back>div {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .set_back {
+      background-color: #b7b5b5;
+      border-radius: 5px;
+      padding-bottom: 4px;
+      padding-top: 4px;
+      padding-right: 5px;
+      padding-left: 5px;
+      width: 380px;
+      margin: 0px;
+      display: flex;
+      opacity: 0;
+      transform: translateY(-10px);
+      /* Start slightly above */
+      transition: all 0.5s ease;
+      /* Smooth transition */
+
+    }
+
+    .set_back.visible {
+      opacity: 1;
+      transform: translateY(0);
+      /* Move to normal position */
+    }
+
+    .set2 {
+      border-radius: 5px;
+      padding-left: 5px;
+      padding-right: 5px;
+      width: 380px;
+      margin: auto;
+      display: flex;
+    }
+
+    .set2>div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+    }
+
+    .exercises {
+      display: flex;
+      flex-direction: column
+    }
+
+    .exercises>div {
+      justify-content: center;
+      align-items: center;
+      display: flex;
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="exercises" id="bk">
+    <div class="bg" id="box_container">
+      <div style="top: 10px; right:15px; position:absolute;">
+        <button class="close-button">X</button>
+      </div>
+      <div style="margin-bottom:10px;">
+        <p class="text">BENCH PRESS</p>
+      </div>
+      <div class="set2">
+        <div
+          style="width: 32px; margin-right: 100px; padding: 0; border: 0; border-radius: 0; text-align-last: center;">
+          <p class="text">SET</p>
+        </div>
+        <div
+          style="width: 32px; margin-right: 100px; padding: 0; border: 0; border-radius: 0; text-align-last: center;">
+          <p class="text">KG</p>
+        </div>
+        <div style="width: 32px; padding: 0; border: 0; border-radius: 0; text-align-last: center;">
+          <p class="text">REPS</p>
+        </div>
+      </div>
+      <div class="set_back .visible" id="setBackContainer">
+        <div style="height: 32px; width: 32px; padding: 0; border: 0; border-radius: 0;">
+          <select class="Settype" name="Set type" id="set">
+            <option value="failure" class="red">F</option>
+            <option value="drop" class="cyan">D</option>
+            <option value="normal" class="black" selected>N</option>
+            <option value="warm" class="yellow">W</option>
+          </select>
+        </div>
+        <div style="width: 150px; justify-content: flex-end;">
+          <input type="number" inputmode="decimal"
+            style="width: 64px; border-radius: 8px; border: 0; text-align: center;outline: 1px solid white;">
+        </div>
+        <div style="width: 132px; justify-content: flex-end;">
+          <input type="number" inputmode="decimal"
+            style="width: 64px; border-radius: 8px; border: 0; text-align: center; outline: 1px solid white;">
+        </div>
+        <div style="width: 60px; justify-content: flex-end; align-items:center;">
+          <button name="del"
+            style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;font-weight:900; user-select:none; width:32px; height:32px; margin-top: none; border-width:0px;font-size:14px; ">X
+          </button>
+        </div>
+      </div>
+      <div>
+        <button id="addSetButton" style="margin-top:10px;">+ADD SET</button>
+      </div>
+    </div>
+    <div>
+      <button id="add" class="add">+ADD EXERCISE</button>
+    </div>
+  </div>
+  <div id="exerpic" style="display:block; transition: all 0.5s case">
+    <div class="overlay" id="overlay"></div>
+    <div id="exercisepicer" class="exercisepicer">
+      <div class="box">
+        <div style="width:300px; margin-top:12px; margin-left:10px;">
+          <p class="text" style="font-size:15px; text-align:left;height:fit-content;">Select Exercise</p>
+          <button id="close" class="close-button">X</button>
+        </div>
+        <div style="display:flex; width:300px; height:32px;justify-content:center; align-items:center; margin-top:5px;">
+          <input placeholder="Search Exercise"
+            style="width:284px; height:24px; border-radius:4px; border:0px; background-color:#d3d2d29c; outline:none; padding-left:8px;color:rgb(0, 0, 0);">
+        </div>
+        <div class="addex">
+          <div class="ratio">
+            <p class="text" style="text-align:left; margin-top:13px; margin-left:5px; width:fit-content">BENCH PRESS</p>
+          </div>
+          <div>
+            <button id="benchbutton" class="butti" style="flex-shrink:6;">+</button>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.onload = function () {
+      const but = document.getElementById("benchbutton");
+      but.addEventListener("click", function () {
+        const newExercise = document.createElement("div")
+        const container = document.getElementById('bk');
+        const addButton = document.getElementById('add');
+        newExercise.className = "bg"
+        newExercise.innerHTML = `
+
+    <div style="margin-bottom:10px;">
+      <p class="text">BENCH PRESS</p>
+    </div>
+    <div class="set2">
+      <div style="width: 32px; margin-right: 100px; padding: 0; border: 0; border-radius: 0; text-align-last: center;">
+        <p class="text">SET</p>
+      </div>
+      <div style="width: 32px; margin-right: 100px; padding: 0; border: 0; border-radius: 0; text-align-last: center;">
+        <p class="text">KG</p>
+      </div>
+      <div style="width: 32px; padding: 0; border: 0; border-radius: 0; text-align-last: center;">
+        <p class="text">REPS</p>
+      </div>
+    </div>
+    <div class="set_back visible" id="setBackContainer">
+      <div style="height: 32px; width: 32px; padding: 0; border: 0; border-radius: 0;">
+        <select class="Settype" name="Set type" id="set">
+          <option value="failure" class="red">F</option>
+          <option value="drop" class="cyan">D</option>
+          <option value="normal" class="black" selected>N</option>
+          <option value="warm" class="yellow">W</option>
+        </select>
+      </div>
+      <div style="width: 150px; justify-content: flex-end;">
+        <input type="number" inputmode="decimal"
+          style="width: 64px; border-radius: 8px; border: 0; text-align: center;outline: 1px solid white;">
+      </div>
+      <div style="width: 132px; justify-content: flex-end;">
+        <input type="number" inputmode="decimal"
+          style="width: 64px; border-radius: 8px; border: 0; text-align: center; outline: 1px solid white;">
+      </div>
+      <div style="width: 60px; justify-content: flex-end; align-items:center;">
+        <button name="del"
+          style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;font-weight:900; user-select:none; width:32px; height:32px; margin-top: none; border-width:0px;font-size:14px;">X</button>
+      </div>
+    </div>
+    <div>
+      <button  name="addSetButton" style="margin-top:10px;">+ADD SET</button>
+    </div>`;
+
+        container.insertBefore(newExercise, addButton.parentNode);
+        const exerpic = document.getElementById("exerpic")
+        exerpic.style.display = "none";
+      })
+      const setBackContainer = document.getElementById('setBackContainer');
+
+      // Add the .visible class after the element has been rendered
+      setTimeout(() => {
+        setBackContainer.classList.add('visible');
+      }, 1); // 10ms delay to trigger the transition
+    };
+    let calc = 1;
+    function updateSelectColor() {
+      // Get all select elements with the class "Settype"
+      const selects = document.getElementsByClassName('Settype');
+
+      // Loop through each select element
+      Array.from(selects).forEach(select => {
+        // Get the selected option
+        const selectedOption = select.options[select.selectedIndex];
+        // Get the color of the selected option using its class
+        const colorClass = selectedOption.className;
+
+        // Apply the color based on the class name
+        switch (colorClass) {
+          case 'red':
+            select.style.color = 'red';
+            break;
+          case 'cyan':
+            select.style.color = 'rgb(0, 136, 255)';
+            break;
+          case 'black':
+            select.style.color = 'black';
+            break;
+          case 'yellow':
+            select.style.color = 'rgb(255, 145, 0)';
+            break;
+          default:
+            select.style.color = 'black'; // Default color if no class matches
+        }
+      });
+    }
+    const cl = document.getElementById("close");
+    cl.addEventListener("click", function () {
+      const exerpic = document.getElementById("exerpic")
+      exerpic.style.display = "none";
+    });
+    const ad = document.getElementById("add");
+    ad.addEventListener("click", function () {
+      const exerpic = document.getElementById("exerpic")
+      exerpic.style.display = "block";
+    });
+    const first = document.getElementById('setBackContainer');
+    first.querySelector('[name="del"]').addEventListener('click', function () {
+      if (calc != 0) {
+        calc--;
+
+        let temp = first;
+
+        while (temp && temp.classList.contains('set_back')) {
+          // Toggle the background color between backgroundColor and textColor
+          if (temp.style.backgroundColor === "white") {
+            temp.style.backgroundColor = '#b7b5b5';
+          } else {
+            temp.style.backgroundColor = "white";
+          }
+
+          temp = temp.nextElementSibling; // Use nextElementSibling to skip text nodes
+        }
+
+        first.remove(); // Remove the element after adjustments
+      }
+    });
+
+    // Add an event listener to update the color whenever the selection changes
+    document.addEventListener('change', function (event) {
+      if (event.target && event.target.classList.contains('Settype')) {
+        updateSelectColor();
+      }
+    });
+
+    // Initial call to set the color based on the default selection
+    updateSelectColor();
+    document.getElementById('addSetButton').addEventListener('click', function () {
+      // Create a new setback container
+      const newSetback = document.createElement('div');
+      newSetback.className = 'set_back';
+      const backgroundColor = calc % 2 === 0 ? '#b7b5b5' : 'white';
+      const textColor = '#b7b5b5'; // Ensure text color contrasts with background
+      newSetback.style.backgroundColor = backgroundColor;
+      newSetback.innerHTML = `
+      <div style="height: 32px; width: 32px; padding: 0; border: 0; border-radius: 0;">
+        <select name="Set type" class="Settype" style="      padding: 0;
+    line-height: 32px; /* Match this to the height of the select box */
+    width: 32px;
+    height: 32px;
+    text-align-last: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    background-color: rgb(252, 252, 252);
+    border: 0px;
+    border-radius: 5px;
+    font-weight: 900;
+    appearance: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease; outline:1px solid ${textColor};">
+          <option value="failure" class="red">F</option>
+          <option value="drop" class="cyan">D</option>
+          <option value="normal" class="black" selected>N</option>
+          <option value="warm" class="yellow">W</option>
+        </select>
+      </div>
+      <div style="width: 150px; justify-content: flex-end;">
+        <input type="number" inputmode="decimal" style="width: 64px; border-radius: 8px; border: 0; text-align: center;outline:1px solid ${textColor};">
+      </div>
+      <div style="width: 132px; justify-content: flex-end;">
+        <input type="number" inputmode="decimal" style="width: 64px; border-radius: 8px; border: 0; text-align: center;outline:1px solid ${textColor};">
+      </div>
+      <div style="width: 60px; justify-content: flex-end; align-items:center;">
+        <button name="del" style="font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;font-weight:900; user-select:none; width:32px; height:32px; margin-top: none; border-width:0px;font-size:14px;outline:1px solid ${textColor}; ">X</buttone>
+      </div>
+    `;
+
+      // Get the container and the button
+      const container = document.getElementById('box_container');
+      const addButton = document.getElementById('addSetButton');
+
+      // Insert the new setback container before the button
+      container.insertBefore(newSetback, addButton.parentNode);
+      setTimeout(function () {
+        newSetback.classList.add('visible');
+      }, 1);
+      calc++;
+      newSetback.querySelector('[name="del"]').addEventListener('click', function () {
+        if (calc != 0) {
+          calc--;
+
+          let temp = newSetback;
+
+          while (temp && temp.classList.contains('set_back')) {
+            // Toggle the background color between backgroundColor and textColor
+            if (temp.style.backgroundColor === "white") {
+              temp.style.backgroundColor = '#b7b5b5';
+            } else {
+              temp.style.backgroundColor = "white";
+            }
+
+            temp = temp.nextElementSibling; // Use nextElementSibling to skip text nodes
+          }
+
+          newSetback.remove(); // Remove the element after adjustments
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
